@@ -10,10 +10,13 @@ namespace CharacterScripts
 
         [HideInInspector] public bool IsInQueue;
 
+        private CharacterMover _characterMover;
+
         public float Timer { get; private set; }
 
         private void Start()
         {
+            _characterMover = GetComponent<CharacterMover>();
             counter.OnCounterComplete += UpdateTimerValue;
             Timer = startTimerValue;
         }
@@ -35,8 +38,7 @@ namespace CharacterScripts
         {
             IsInQueue = false;
             Timer = startTimerValue;
-            Debug.LogError("Out of queue!");    
-            /*TODO  вызвать метод опускания вниз*/
+            _characterMover.MoveDown = true;
         }
 
         private void OnDestroy()

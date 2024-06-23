@@ -167,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.02
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -202,6 +202,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 446018956}
@@ -221,6 +225,14 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 405496494}
+    - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: displaceDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: startTimerValue
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -301,9 +313,10 @@ MonoBehaviour:
   - {fileID: 2024945153}
   - {fileID: 187957004}
   - {fileID: 1641076754}
-  startSpawnInterval: 20
-  deltaInterval: 0
-  peopleAmountToDecrease: 0
+  startSpawnInterval: 3
+  deltaInterval: 20
+  charactersAmountToDecrease: 5
+  minSpawnInterval: 10
 --- !u!114 &405496494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -747,7 +760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.02
+      value: -5.08
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -782,6 +795,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 1745966984}
@@ -801,6 +818,14 @@ PrefabInstance:
       propertyPath: counter
       value: 
       objectReference: {fileID: 405496494}
+    - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: displaceDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: startTimerValue
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -887,6 +912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060552341}
+  - component: {fileID: 2060552342}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -912,6 +938,24 @@ Transform:
   - {fileID: 1778895514}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060552342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060552340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778f8416fb5dd6d9a92136a31c7d3422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters:
+  - {fileID: 1240212052}
+  - {fileID: 58601736}
+  - {fileID: 1778895514}
+  upperPointsParent: {fileID: 1016463759}
+  lowerPointsParent: {fileID: 37814943}
 --- !u!1001 &5289721345859612643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -926,7 +970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.9
+      value: -4.96
       objectReference: {fileID: 0}
     - target: {fileID: 754375776700980766, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -961,6 +1005,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: speed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4320510914935135130, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: targetPoint
       value: 
       objectReference: {fileID: 668843260}
@@ -981,8 +1029,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 405496494}
     - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
+      propertyPath: displaceDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8082520624786978196, guid: 927dab308626535448dbf5d5fbe511c9, type: 3}
       propertyPath: startTimerValue
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

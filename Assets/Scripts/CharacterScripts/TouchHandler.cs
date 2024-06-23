@@ -7,7 +7,7 @@ namespace CharacterScripts
     {
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.LogError("On character clicked!");
+            Debug.Log("On character clicked!");
         }
     }
 }

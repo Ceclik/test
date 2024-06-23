@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using CharacterScripts;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class QueueHandler : MonoBehaviour
@@ -11,7 +8,8 @@ public class QueueHandler : MonoBehaviour
     [Space(10)][Header("Timings")]
     [SerializeField] private float startSpawnInterval;
     [SerializeField] private float deltaInterval;
-    [SerializeField] private int peopleAmountToDecrease;
+    [SerializeField] private int charactersAmountToDecrease;
+    [SerializeField] private float minSpawnInterval;
     
     private int _currentIndex;
 
@@ -32,7 +30,7 @@ public class QueueHandler : MonoBehaviour
         characters[_currentIndex].GetComponent<CharacterTimer>().IsInQueue = true;
         _currentIndex++;
         
-        if (_currentIndex == 3)/////////////////////////////////////////////////////////TODO переделать
+        if (_currentIndex == 3)
             _currentIndex = 0;
 
         _passedCharactersCounter++;
@@ -60,6 +58,13 @@ public class QueueHandler : MonoBehaviour
             {
                 QuitQueue(timer);
             }
+        }
+
+        if (_passedCharactersCounter == charactersAmountToDecrease && _currentInterval > minSpawnInterval)
+        {
+            Debug.Log("Decreasing interval");
+            _currentInterval -= deltaInterval;
+            _passedCharactersCounter = 0;
         }
     }
 }

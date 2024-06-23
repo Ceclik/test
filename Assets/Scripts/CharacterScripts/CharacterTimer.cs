@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CharacterScripts
@@ -7,12 +9,16 @@ namespace CharacterScripts
         [SerializeField] private float startTimerValue;
         [SerializeField] private float deltaTimerValue;
         [SerializeField] private CharactersCounter counter;
+        [SerializeField] private float displaceDelay;
 
-        [HideInInspector] public bool IsInQueue;
-
+        public bool IsInQueue { get; set; }
+        public float Timer { get; private set; }
+        
         private CharacterMover _characterMover;
 
-        public float Timer { get; private set; }
+        public delegate void DisplaceCharacters();
+
+        public event DisplaceCharacters OnQueueQuit;
 
         private void Start()
         {
@@ -39,6 +45,13 @@ namespace CharacterScripts
             IsInQueue = false;
             Timer = startTimerValue;
             _characterMover.MoveDown = true;
+            StartCoroutine(QueueQuitDelayed());
+        }
+
+        private IEnumerator QueueQuitDelayed()
+        {
+            yield return new WaitForSeconds(displaceDelay);
+            OnQueueQuit?.Invoke();
         }
 
         private void OnDestroy()

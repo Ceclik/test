@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace CharacterScripts
@@ -10,6 +10,8 @@ namespace CharacterScripts
         [SerializeField] private float deltaTimerValue;
         [SerializeField] private CharactersCounter counter;
         [SerializeField] private float displaceDelay;
+
+        [Space(10)] [SerializeField] private TextMeshProUGUI timerText;
 
         public bool IsInQueue { get; set; }
         public float Timer { get; private set; }
@@ -30,6 +32,11 @@ namespace CharacterScripts
         private void Update()
         {
             if (IsInQueue) Timer -= Time.deltaTime;
+
+            timerText.text = ((int)Timer).ToString();
+            
+            if(Timer < 10)
+                timerText.color = Color.red;
 
             if (IsInQueue && Timer <= 0)
                 QueueQuit();

@@ -44,6 +44,7 @@ namespace CharacterScripts
         private void OnObjectTouched()
         {
             /*TODO ДИАЛОГ*/
+            Debug.Log("Touch");
         }
     }
 }

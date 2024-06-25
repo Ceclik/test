@@ -19,7 +19,6 @@ namespace CharacterScripts
         private CharacterMover _characterMover;
 
         public delegate void DisplaceCharacters();
-
         public event DisplaceCharacters OnQueueQuit;
 
         private void Start()
@@ -37,9 +36,6 @@ namespace CharacterScripts
             
             if(Timer < 10)
                 timerText.color = Color.red;
-
-            if (IsInQueue && Timer <= 0)
-                QueueQuit();
         }
 
         private void UpdateTimerValue()
@@ -50,7 +46,7 @@ namespace CharacterScripts
         public void QueueQuit()
         {
             IsInQueue = false;
-            Timer = startTimerValue;
+            
             _characterMover.MoveDown = true;
             StartCoroutine(QueueQuitDelayed());
         }
@@ -58,6 +54,7 @@ namespace CharacterScripts
         private IEnumerator QueueQuitDelayed()
         {
             yield return new WaitForSeconds(displaceDelay);
+            Timer = startTimerValue;
             OnQueueQuit?.Invoke();
         }
 

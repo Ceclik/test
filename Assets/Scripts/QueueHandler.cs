@@ -1,5 +1,6 @@
 using CharacterScripts;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QueueHandler : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class QueueHandler : MonoBehaviour
     [SerializeField] private float deltaInterval;
     [SerializeField] private int charactersAmountToDecrease;
     [SerializeField] private float minSpawnInterval;
+
+    [Space(10)] [Header("Texsts")] [SerializeField]
+    private Text queueCounterText; 
     
     private int _currentIndex;
 
@@ -17,6 +21,7 @@ public class QueueHandler : MonoBehaviour
     private float _currentInterval;
 
     private int _passedCharactersCounter;
+    private int _queueCounter;
 
     private void Start()
     {
@@ -34,10 +39,21 @@ public class QueueHandler : MonoBehaviour
             _currentIndex = 0;
 
         _passedCharactersCounter++;
+        
+        _queueCounter++;
+        Debug.Log($"queue counter: {_queueCounter}");
+        if (_queueCounter > 3)
+            queueCounterText.text = $"+{_queueCounter - 3}";
+        if (_queueCounter <= 3) queueCounterText.text = " ";
     }
 
     private void QuitQueue(CharacterTimer timer)
     {
+        _queueCounter--;
+        Debug.Log($"queue counter: {_queueCounter}");
+        if (_queueCounter > 3)
+            queueCounterText.text = $"+{_queueCounter - 3}";
+        if (_queueCounter <= 3) queueCounterText.text = " ";
         timer.QueueQuit();
     }
 
@@ -54,9 +70,10 @@ public class QueueHandler : MonoBehaviour
         foreach (var character in characters)
         {
             CharacterTimer timer = character.GetComponent<CharacterTimer>();
-            if (timer.Timer <= 0)
+            if (timer.Timer <= 0 && timer.IsInQueue)
             {
                 QuitQueue(timer);
+                timer.IsInQueue = false;
             }
         }
 

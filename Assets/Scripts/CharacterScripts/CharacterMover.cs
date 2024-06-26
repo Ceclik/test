@@ -39,7 +39,7 @@ namespace CharacterScripts
             {
                 if (MoveUp && transform.position == UpperTargetPoint.position)
                 {
-                    Debug.Log($"is up\ncharacrer: {gameObject.name}");
+                    //Debug.Log($"is up\ncharacrer: {gameObject.name}");
                     MoveUp = false;
                     
                     _isUp = true;
@@ -50,7 +50,7 @@ namespace CharacterScripts
 
                 if (MoveDown && transform.position == LowerTargetPoint.position)
                 {
-                    Debug.Log($"is down\ncharacrer: {gameObject.name}");
+                    //Debug.Log($"is down\ncharacrer: {gameObject.name}");
                     MoveDown = false;
                     
                     _isUp = false;

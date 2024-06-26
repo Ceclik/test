@@ -40,6 +40,7 @@ namespace CharacterScripts
 
         private void ChangeTargetPoints()
         {
+            //Debug.Log("Move side");
             foreach (var character in characters)
             {
                 CharacterMover mover = character.GetComponent<CharacterMover>();
